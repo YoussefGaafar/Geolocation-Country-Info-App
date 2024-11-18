@@ -131,6 +131,12 @@ body {
   margin-bottom: 1rem;
 }
 
+.error{
+  color: red;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 .hidden{
   display: none;
 }

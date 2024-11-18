@@ -1,8 +1,17 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
+const errorEl = document.querySelector('.error');
 
 const renderLocation = function (city, country) {
   return `<div class="location">You are in ${city}, ${country}</div>`;
+};
+
+const renderError = function (error) {
+  console.log(error);
+  errorEl.innerHTML = `Something is wrong: ${error.message} 🧨 <br>
+  <div style="text-align: center; margin-top: 1rem;">Please refresh your page</div>`;
+  errorEl.classList.remove('hidden');
+  btn.classList.add('hidden');
 };
 
 const renderCountry = function (data, className = '', locationEl = '') {
@@ -67,9 +76,7 @@ const whereAmI = function () {
     .then((data) => {
       renderCountry(data.pop(), '', locationEl);
     })
-    .catch((error) => {
-      console.error(`${error.message} 🧨`);
-    });
+    .catch(renderError);
 };
 
 btn.addEventListener('click', whereAmI);
